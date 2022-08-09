@@ -14,15 +14,18 @@ router.get('/test-me', function (req, res) {
     console.log(arr)    
 
     let array = [1,3,5,7,9,11,13,15,17,19]
+    //odd numbers
     let num = lodash.tail(array)
     console.log(num)
 
     let numbers = [4,6,3,9,7,7,3,]
+    //same numbers to combined
     let same = lodash.union(numbers)
     console.log(same)
 
     let adv = [['horror','the shining'],['drama','Titanic'],['thiller','shutter'],['fantasy','pans Labyrinth']]
     let list = lodash.fromPairs(adv)
+    //use to set an aarray into object
     console.log(list)
 
    
