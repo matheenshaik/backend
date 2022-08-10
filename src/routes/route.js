@@ -1,6 +1,7 @@
 const express = require('express');
 const myHelper = require('../util/helper')
-const underscore = require('underscore')
+const underscore = require('underscore');
+const { result } = require('underscore');
 
 const router = express.Router();
 
@@ -46,6 +47,15 @@ router.get('/candidates', function(req, res){
     let candidates = ['Akash','Suman']
     res.send(candidates)
 })
+router.get ("/elements", function(req, res){
+    console.log('element is:'+JSON.stringify(req.query))
+    let state = req.query.state
+    let colour = req.query.color
+    console.log('state:'+state )
+    console.log('colour:'+colour)
+    let elements = ['o2','h2']
+    res.send(elements)
+})
 
 // use path param
 router.get('/candidates/:canidatesName', function(req, res){
@@ -53,6 +63,38 @@ router.get('/candidates/:canidatesName', function(req, res){
     console.log('Candidates name is '+req.params.canidatesName)
     res.send('Done')
 })
+
+
+router.get('/numbers',function(req,res){
+    let arr = [1,2,3,4,5,7]
+    let n = arr[(arr.length)-1]
+
+    let total = n*(n+1)/2
+    let  num = arr.reduce((x,y)=>x+y)
+
+    let result = total - num
+    res.send ('missing Numbers :'+result)
+   
+})
+
+router.get('/missing',function(req, res){
+    
+    let arr= [33, 34, 35, 37, 38]
+    let num= arr.length
+  
+    let total = 0;
+    for (var i=0; i<arr.length; i++){
+        total = total+ arr[i];
+    }  
+    let n= arr[0]
+    let m= arr.pop()
+    let Sum= (num + 1) * (n+m) / 2
+    let missingNumber =  Sum - total
+   
+    res.send( { data: missingNumber } );
+  });
+ 
+
 
 router.get("/films", function(req, res){
     const films = [ {
