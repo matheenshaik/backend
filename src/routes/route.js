@@ -178,4 +178,56 @@ let players =
 
 
 
+let persons = [
+    {
+        name : 'Matheen',
+        age : 20,
+        votingStatus : false
+    },
+    {
+        name : 'Ali',
+        age : 15,
+        votingStatus : false
+    },
+    {
+        name : 'Salman',
+        age : 9,
+        votingStatus : false
+    },
+    {
+        name : 'Masthan',
+        age : 40,
+        votingStatus : false
+    },
+    {
+        name : 'Anwar',
+        age : 80,
+        votingStatus : false
+    },
+] 
+
+    router.post('/voter',function(req,res){
+
+        let votingAge =req.query.votingAge
+        let eligible=[ ]
+
+        for(i=0; i<persons.length; i++){
+            
+                if(persons[i].age>=votingAge){
+                persons[i].votingStatus = true                
+                 eligible.push(persons[i])       
+                 break;             
+                
+            }      
+        } 
+        res.send({ data : eligible})        
+})
+
+
+    // let person = req.query
+    // let voter = person.age
+    // let result = persons.filter(vote => voter >= 18)
+    // persons.push (result)
+
+
 module.exports = router;
