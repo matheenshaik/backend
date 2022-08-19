@@ -7,11 +7,12 @@ const bookController= require("../controllers/bookController")
 router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
-
+//author
 router.post("/createAuthor", authorController.createAuthor  )
 
 router.get("/getAuthorsData", authorController.getAuthorsData)
 
+//book
 router.post("/createBook", bookController.createBook  )
 
 router.get("/getBooksData", bookController.getBooksData)
