@@ -27,4 +27,6 @@ router.get("/getBooksWithData", bookController.getBooksWithAuthorDetails)
 
 router.put('/updateBook', bookController.updateBook)
 
+router.get('/getrating', bookController.price)
+
 module.exports = router;
