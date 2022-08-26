@@ -1,39 +1,41 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose')
 // const UserModel= require("../models/userModel.js")
+// const productModel= require("../models/productModel.js")
+
 const UserController= require("../controllers/userController")
-const BookController= require("../controllers/bookController")
+
+const orderController= require("../controllers/orderController")
+
+const productController= require("../controllers/productController")
+
 const commonMW = require ("../middlewares/commonMiddlewares")
 
-router.get("/test-me", function (req, res) {
-    res.send("My first ever api!")
-})
+
+// router.get("/test-me", function (req, res) {
+//     res.send("My first ever api!")
+// })
+
+
+router.post("/product",productController.productDetails)
+
+router.post("/users", commonMW.mid1,UserController.getUsersData)
+
+router.post("/order", orderController.order)
+
+router.get("/getOrder", orderController.getOrderDetails)
+
+//router.post("/createBook", BookController.createBook  )
 
 
 
 
-router.post("/createBook", BookController.createBook  )
+// router.post("/createUser", UserController.createUser)
 
 
 
 
-router.post("/createUser", UserController.createUser)
-// router.get("/getUsersData", UserController.getUsersData)
-
-
-// const mid1= function ( req, res, next) {
-//     console.log("Hi I am a middleware named Mid1")
-//     // logic
-//     let loggedIn = false
-
-//     if (loggedIn== true) { 
-//         console.log( "OK LOGGED IS IS TRUE NOW")
-//         next ()
-//     }
-//     else {
-//         res.send ("Please login or register")
-//     }
-// }
 
 // // e.g. restricted and open-to-all API's can be handled like below now:
 // router.get('/homePage', mid1, UserController.feeds)
@@ -48,7 +50,7 @@ router.post("/createUser", UserController.createUser)
 
 
 
-router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
+//router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
 
 
 
