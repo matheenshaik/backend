@@ -8,6 +8,22 @@ const getUsersData= async function (req, res) {
     console.log(Usersdetails)
 }
 
+
+module.exports.getUsersData= getUsersData
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const basicCode= async function(req, res, next) {
 //     let tokenDataInHeaders= req.headers.token
 //     console.log(tokenDataInHeaders)
@@ -46,6 +62,6 @@ const getUsersData= async function (req, res) {
 
 // module.exports.createUser= createUser
 
-module.exports.getUsersData= getUsersData
+
 
 // module.exports.basicCode= basicCode

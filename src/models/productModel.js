@@ -1,11 +1,9 @@
 const mongoose = require('mongoose')
 
-const productSchema = new mongoose.Schema( {
+const productSchema = new mongoose.Schema({
     name: String,
 	category: String,
-	price:{
-        type: Number,
-        requried:true
-    } 
-})
-module.exports = mongoose.model("AppProduct", productSchema)
+	price: {type:Number,requried:true} //mandatory property
+},{timestamps: true});
+
+module.exports = mongoose.model('AppProduct',productSchema)

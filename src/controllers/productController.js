@@ -1,10 +1,10 @@
-const productModel = require('../Models/productModel')
+const { count } = require("console")
+const productModel= require("../models/productModel")
 
-const productDetails = async function(req,res){
+const product= async function (req, res) {
     let data = req.body
-    let details = await productModel.create(data)
-    res.send({msg:details})
-    console.log(details)
+    let savedData= await productModel.create(data)
+    res.send({data: savedData})
 }
 
-module.exports.productDetails = productDetails
+module.exports.product= product

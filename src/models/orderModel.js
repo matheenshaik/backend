@@ -4,15 +4,18 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 const orderSchema = new mongoose.Schema({
     user:{
 		type: ObjectId,
-		ref: 'AppUser'
+		ref: 'AppUser',
+		required:true
+
 	},
 	product:{
 		type:ObjectId,
-		ref: 'AppProduct'
+		ref: 'AppProduct',
+		required:true
 	},
 
     amount: Number,
-	isFreeAppUser: Boolean, 
+	isFreeAppUser:Boolean, 
 	date: String
 
 }, { timestamps: true });

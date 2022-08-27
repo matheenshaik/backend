@@ -4,7 +4,7 @@ const mid1= function ( req, res, next) {
     // console.log(freeapp)
 
     if(!freeapp){
-        return res.send({msg:"not received"})
+        return res.send({Alert:"Header not exist"})
     }
     next()
 }

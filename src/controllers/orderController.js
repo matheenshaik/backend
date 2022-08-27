@@ -1,21 +1,60 @@
 const { count } = require("console")
 const orderModel = require("../models/orderModel")
-const productModel = require("../models/productModel")
 const userModel = require("../models/userModel")
+const productModel = require("../models/productModel")
 
 const order= async function (req, res) {
-    let order= req.body
-    let savedData= await orderModel.create(order)
-    res.send({msg: savedData})
+    let order = req.body
+    let user = order.user
+    let product = order.product
+
+    let userId=await userModel.findById(user)
+    let productId=await productModel.findById(product)
+    let header=req.headers.isfreeapp
+
+    if(!user){
+        return res.send({Alert:"User required"})
+    }else if(!product){
+        return res.send({Alert:"Product required"})
+    }else if(!userId){
+        return res.send({Alert:"UserId invalid"})
+    }else if(!productId){
+        return res.send({Alert:"ProductId invalid "})
+    }
+
+    if(header=='false'){
+        let productP=await productModel.findById({_id:product}).select({_id:1,price:1})
+        let proP=productP.price
+        order.amount=proP
+
+        let userA=userId.balance
+        if(userA>proP){
+          let  balanceOf=await userModel.findByIdAndUpdate({_id:user},{$inc:{balance:-proP}},{new:true}) 
+          let userF=await userModel.findByIdAndUpdate({_id:user},{$set:{isFreeAppUser:false}},{new:true})         
+          order.isFreeAppUser==false
+          
+            let orderIs=await orderModel.create(order)
+            res.send(orderIs)
+
+        }else{
+            return req.send({Alert:"User balance insufficient"})
+        }
+
+
+    }else if(header=='true'){
+        order.amount=0
+        // order.isFreeAppUser==true
+        let userT=await userModel.findByIdAndUpdate({_id:user},{$set:{isFreeAppUser:true}},{new:true})
+        // console.log(userT)
+        let orderIs=await orderModel.create(order)
+            res.send(orderIs)
+    }
+  
 }
 
-const getOrderDetails = async function (req, res) {
-    let specificBook = await orderModel.find().populate('AppUser').populate('AppProduct')
-    res.send({data: specificBook})
-}
+
 
 module.exports.order = order
-module.exports.getOrderDetails = getOrderDetails
 
 
 
