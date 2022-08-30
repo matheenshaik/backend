@@ -1,18 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const mongoose  = require('mongoose')
+
+// // router.get("/test-me", function (req, res) {
+// //     res.send("My first ever api!")
+// // })
+
+
 const userController= require("../controllers/userController")
 
-router.get("/test-me", function (req, res) {
-    res.send("My first ever api!")
-})
+const userMW = require("../middleware/userMiddleware")
 
-router.post("/users", userController.createUser  )
 
-router.post("/login", userController.loginUser)
+ router.post("/users", userController.userIs) 
 
-//The userId is sent by front end
-router.get("/users/:userId", userController.getUserData)
+ router.post("/login", userController.login)
 
-router.put("/users/:userId", userController.updateUser)
+// //The userId is sent by front end
+ router.get("/users/:userId",userMW.token, userController.UserData)
+
+ router.put("/users/:userId", userMW.token,userController.updateData)
+
+ router.delete("/users/:userId", userMW.token,userController.deleteData)
 
 module.exports = router;
