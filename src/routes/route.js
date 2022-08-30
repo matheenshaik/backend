@@ -17,10 +17,10 @@ const userMW = require("../middleware/userMiddleware")
  router.post("/login", userController.login)
 
 // //The userId is sent by front end
- router.get("/users/:userId",userMW.token, userController.UserData)
+ router.get("/users/:userId",userMW.tokenMid, userController.UserData)
 
- router.put("/users/:userId", userMW.token,userController.updateData)
+ router.put("/users/:userId", userMW.tokenMid,userController.updateData)
 
- router.delete("/users/:userId", userMW.token,userController.deleteData)
+ router.delete("/users/:userId", userMW.tokenMid,userController.deleteData)
 
 module.exports = router;
