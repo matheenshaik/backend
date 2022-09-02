@@ -3,7 +3,7 @@ const mongoose = require ('mongoose')
 const userSchema = new mongoose.Schema({
     FirstName : String,
     LastName :String,
-    mobile: Number,
+    mobile:{type: Number, required:true},
     emailId : String,
     password : String,
     gender: {
@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
     isDeleted: {
         type: Boolean,
         default: false 
-    }
+    },
+    age:Number
 
 }, {timestamps:true})
 
