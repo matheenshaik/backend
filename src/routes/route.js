@@ -28,5 +28,6 @@ router.get("/getSortCities", weatherController.sortCities)
 
 
 router.get("/getMemes", memeController.getMemes)
+router.post("/getMemesImg", memeController.memesImg)
 
 module.exports = router;
