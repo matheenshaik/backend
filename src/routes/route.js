@@ -8,9 +8,12 @@ const mongoose  = require('mongoose')
 
 
 const userController= require("../controllers/userController")
+const casualController =require("../controllers/casual")
 
 const userMW = require("../middleware/userMiddleware")
 
+router.post("/createOne", casualController.createOne)
+router.post("/loginBro", casualController.loginBro)
 
  router.post("/users", userController.userIs) 
 

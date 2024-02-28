@@ -16,11 +16,7 @@ const tokenMid = async function (req, res, next) {
     }
 
 
-let userId = userToken.userId
-   let user = req.params.userId
-   if(user!= userId){
-    return res.send({status:false, user:"user not valied"})
-   } 
+
     next()
 }
 
